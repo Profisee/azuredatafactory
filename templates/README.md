@@ -20,4 +20,4 @@ GitHub repository
 6.  In ADF, click the Refresh button then your templates should appear
     in the bottom left.
 
-> <img src="./media/image1.png" style="width:4.852in;height:3.32124in" />
+   <img src="./media/image1.png" style="width:4.852in;height:3.32124in" />
