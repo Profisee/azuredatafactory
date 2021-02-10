@@ -18,7 +18,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy from Profisee REST API to CSV_copy1')]",
+			"name": "[concat(parameters('factoryName'), '/Copy from Profisee REST API to CSV')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -44,7 +44,7 @@
 								"requestMethod": "GET",
 								"additionalHeaders": {
 									"x-api-key": ""
-								},
+								},								
 								"paginationRules": {
 									"AbsoluteUrl": "$.nextPage"
 								}
@@ -72,10 +72,10 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"entityId": {
-										"value": "@variables('EntityName')",
+										"value": "@variables('EntityId')",
 										"type": "Expression"
 									},
-									"pageSize": 100,
+									"pageSize": 1000,
 									"attributes": " ",
 									"filter": " ",
 									"orderBy": " ",
@@ -86,15 +86,15 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "OutputBlobCsv",
+								"referenceName": "AdlsGen2BlobCsv",
 								"type": "DatasetReference",
 								"parameters": {
 									"FolderName": {
-										"value": "@concat(variables('OutputContainer'), '/', variables('EntityName'))",
+										"value": "@concat(variables('OutputContainer'), '/', variables('EntityId'))",
 										"type": "Expression"
 									},
 									"FileName": {
-										"value": "@concat(variables('EntityName'), '_', string(utcnow()), '.csv')",
+										"value": "@concat(variables('EntityId'), '_', string(utcnow()), '.csv')",
 										"type": "Expression"
 									}
 								}
@@ -107,16 +107,19 @@
 						"type": "String",
 						"defaultValue": "profisee-output"
 					},
-					"EntityName": {
+					"EntityId": {
 						"type": "String"
 					}
+				},
+				"folder": {
+					"name": "CSV Format"
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-09-25T15:29:08Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Members_Get')]",
-				"[concat(variables('factoryId'), '/datasets/OutputBlobCsv')]"
+				"[concat(variables('factoryId'), '/datasets/AdlsGen2BlobCsv')]"
 			]
 		},
 		{
@@ -158,11 +161,14 @@
 						"defaultValue": " "
 					}
 				},
+				"folder": {
+					"name": "Profisee REST API"
+				},
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {
 					"relativeUrl": {
-						"value": "@concat('members/',\ndataset().entityId, \n'/?pageSize=', string(dataset().pageSize),\n'&attributes=', dataset().attributes,\n'&filter=', dataset().filter,\n'&orderBy=', dataset().orderBy,\n'&codes=', dataset().codes,\n'&dbaFormat=', string(dataset().dbaFormat)\n)",
+						"value": "@concat(\n'records/',\ndataset().entityId, \n'/?pageSize=', string(dataset().pageSize),\n'&attributes=', dataset().attributes,\n'&filter=', dataset().filter,\n'&orderBy=', dataset().orderBy,\n'&codes=', dataset().codes,\n'&dbaFormat=', string(dataset().dbaFormat)\n)",
 						"type": "Expression"
 					}
 				},
@@ -171,7 +177,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/OutputBlobCsv')]",
+			"name": "[concat(parameters('factoryName'), '/AdlsGen2BlobCsv')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -187,6 +193,9 @@
 					"FileName": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "CSV Format"
 				},
 				"annotations": [],
 				"type": "DelimitedText",

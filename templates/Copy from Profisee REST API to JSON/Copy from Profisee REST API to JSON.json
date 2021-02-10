@@ -18,7 +18,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy from Profisee REST API to JSON_copy1')]",
+			"name": "[concat(parameters('factoryName'), '/Copy from Profisee REST API to JSON')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -67,10 +67,10 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"entityId": {
-										"value": "@variables('EntityName')",
+										"value": "@variables('EntityId')",
 										"type": "Expression"
 									},
-									"pageSize": 100,
+									"pageSize": 1000,
 									"attributes": " ",
 									"filter": " ",
 									"orderBy": " ",
@@ -81,15 +81,15 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "OutputBlobJson",
+								"referenceName": "AdlsGen2BlobJson",
 								"type": "DatasetReference",
 								"parameters": {
 									"FolderName": {
-										"value": "@concat(variables('OutputContainer'), '/', variables('EntityName'))",
+										"value": "@concat(variables('OutputContainer'), '/', variables('EntityId'))",
 										"type": "Expression"
 									},
 									"FileName": {
-										"value": "@concat(variables('EntityName'), '_', string(utcnow()), '.json')",
+										"value": "@concat(variables('EntityId'), '_', string(utcnow()), '.json')",
 										"type": "Expression"
 									}
 								}
@@ -102,16 +102,19 @@
 						"type": "String",
 						"defaultValue": "profisee-output"
 					},
-					"EntityName": {
+					"EntityId": {
 						"type": "String"
 					}
+				},
+				"folder": {
+					"name": "JSON Format"
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-09-25T15:29:08Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Members_Get')]",
-				"[concat(variables('factoryId'), '/datasets/OutputBlobJson')]"
+				"[concat(variables('factoryId'), '/datasets/AdlsGen2BlobJson')]"
 			]
 		},
 		{
@@ -153,11 +156,14 @@
 						"defaultValue": " "
 					}
 				},
+				"folder": {
+					"name": "Profisee REST API"
+				},
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {
 					"relativeUrl": {
-						"value": "@concat('members/',\ndataset().entityId, \n'/?pageSize=', string(dataset().pageSize),\n'&attributes=', dataset().attributes,\n'&filter=', dataset().filter,\n'&orderBy=', dataset().orderBy,\n'&codes=', dataset().codes,\n'&dbaFormat=', string(dataset().dbaFormat)\n)",
+						"value": "@concat(\n'records/',\ndataset().entityId, \n'/?pageSize=', string(dataset().pageSize),\n'&attributes=', dataset().attributes,\n'&filter=', dataset().filter,\n'&orderBy=', dataset().orderBy,\n'&codes=', dataset().codes,\n'&dbaFormat=', string(dataset().dbaFormat)\n)",
 						"type": "Expression"
 					}
 				},
@@ -166,7 +172,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/OutputBlobJson')]",
+			"name": "[concat(parameters('factoryName'), '/AdlsGen2BlobJson')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -182,6 +188,9 @@
 					"FileName": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "JSON Format"
 				},
 				"annotations": [],
 				"type": "Json",

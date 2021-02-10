@@ -18,7 +18,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy from JSON to Profisee REST API1')]",
+			"name": "[concat(parameters('factoryName'), '/Copy from JSON to Profisee REST API')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -62,7 +62,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "InputBlobJson",
+								"referenceName": "AdlsGen2BlobJson",
 								"type": "DatasetReference",
 								"parameters": {
 									"FolderName": {
@@ -78,14 +78,13 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "ProfiseeRESTAPI_Members_Update",
+								"referenceName": "ProfiseeRESTAPI_Members_Upsert",
 								"type": "DatasetReference",
 								"parameters": {
 									"entityId": {
 										"value": "@replace(pipeline().parameters.FileFolder, 'profisee-input/', '')",
 										"type": "Expression"
-									},
-									"isUpsert": true
+									}
 								}
 							}
 						]
@@ -99,16 +98,19 @@
 						"type": "string"
 					}
 				},
+				"folder": {
+					"name": "JSON Format"
+				},
 				"annotations": [],
 				"lastPublishTime": "2020-09-25T15:29:08Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/InputBlobJson')]",
-				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Members_Update')]"
+				"[concat(variables('factoryId'), '/datasets/AdlsGen2BlobJson')]",
+				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Members_Upsert')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/InputBlobJson')]",
+			"name": "[concat(parameters('factoryName'), '/AdlsGen2BlobJson')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -124,6 +126,9 @@
 					"FileName": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "JSON Format"
 				},
 				"annotations": [],
 				"type": "Json",
@@ -145,7 +150,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ProfiseeRESTAPI_Members_Update')]",
+			"name": "[concat(parameters('factoryName'), '/ProfiseeRESTAPI_Members_Upsert')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -157,17 +162,16 @@
 				"parameters": {
 					"entityId": {
 						"type": "string"
-					},
-					"isUpsert": {
-						"type": "bool",
-						"defaultValue": false
 					}
+				},
+				"folder": {
+					"name": "Profisee REST API"
 				},
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {
 					"relativeUrl": {
-						"value": "@concat('members/',\ndataset().entityId, \n'/?isUpsert=',string(dataset().isUpsert)\n)",
+						"value": "@concat(\n'records/',\ndataset().entityId, \n'/?isUpsert=true'\n)\n",
 						"type": "Expression"
 					}
 				},
