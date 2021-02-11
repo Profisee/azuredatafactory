@@ -78,7 +78,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "ProfiseeRESTAPI_Members_Upsert",
+								"referenceName": "ProfiseeRESTAPI_Records_Upsert",
 								"type": "DatasetReference",
 								"parameters": {
 									"entityId": {
@@ -106,7 +106,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AdlsGen2BlobCsv')]",
-				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Members_Upsert')]"
+				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Records_Upsert')]"
 			]
 		},
 		{
@@ -154,7 +154,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ProfiseeRESTAPI_Members_Upsert')]",
+			"name": "[concat(parameters('factoryName'), '/ProfiseeRESTAPI_Records_Upsert')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {

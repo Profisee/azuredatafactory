@@ -63,7 +63,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ProfiseeRESTAPI_Members_Get",
+								"referenceName": "ProfiseeRESTAPI_Records_Get",
 								"type": "DatasetReference",
 								"parameters": {
 									"entityId": {
@@ -113,12 +113,12 @@
 				"lastPublishTime": "2020-09-25T15:29:08Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Members_Get')]",
+				"[concat(variables('factoryId'), '/datasets/ProfiseeRESTAPI_Records_Get')]",
 				"[concat(variables('factoryId'), '/datasets/AdlsGen2BlobJson')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ProfiseeRESTAPI_Members_Get')]",
+			"name": "[concat(parameters('factoryName'), '/ProfiseeRESTAPI_Records_Get')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
