@@ -105,7 +105,7 @@ Copy Activity
     
     2.  **pageSize** - The page size to get.  Defaults to 1000 if not supplied.
     
-    3.  **filter** - A filter to restrict the members returned.
+    3.  **filter** - A filter to restrict the records returned.
         1.  \[&lt;attribute name&gt;\] &lt;operator&gt; &lt;value&gt;.
             -   Example: \[Color\] eq ‘BLU’.
         2.  The filter can include multi-level attributes (MLAs).
@@ -137,7 +137,7 @@ Copy Activity
                 -   "Source System": "SF",
                 -   "Source System.Name": "Salesforce",
     
-    7.  **codes** – A comma separated list of member codes to return. 
+    7.  **recordCodes** – A comma separated list of record codes to restrict the records returned. 
     
     8.  You can find more information on these parameters on the Profisee REST API Swagger page. You can find it at https://&lt;host 
         name&gt;/Profisee/rest.
