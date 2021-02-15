@@ -1,4 +1,4 @@
-**Clone Profisee ADF templates to your GitHub repository**
+# Clone Profisee ADF templates to your GitHub repository
 
 This page describes how to clone the Profisee ADF templates to your ADF
 GitHub repository
