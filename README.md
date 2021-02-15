@@ -1,4 +1,4 @@
-# **<span class="underline">Profisee Azure Data Factory</span>**
+# Profisee Azure Data Factory
 
 This repository contains all the Profisee Azure Data Factory (ADF) templates and describes how to clone them wth Git or import them directly into ADF.
 

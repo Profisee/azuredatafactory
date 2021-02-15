@@ -1,4 +1,4 @@
-**Import Profisee ADF templates to ADF**
+# Import Profisee ADF templates to ADF
 
 This page describes how to import the Profisee ADF templates to your ADF.
 
