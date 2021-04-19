@@ -46,24 +46,7 @@ How to use this solution template
     
         <img src="./media/copyfrom_json_to_restapi_4.png" style="width:2.06135in;height:1.29089in" />
     
-    2.  Enter the following information for the REST linked service.
-    
-        1.  Name: Enter a unique name within your ADF.
-    
-        2.  Description: Enter an optional description.
-    
-        3.  Integration runtime: You can select the auto resolve option or
-            create a custom integration runtime. Some linked services that
-            ADF integrates with requires the ADF integration runtime be in
-            the same region as the service. In this case you will need to
-            create a custom integration runtime in the same region as that
-            linked service.
-    
-        4.  Base URL: enter the base URL to your deployed Profisee REST API.
-    
-        5.  Authentication type: select **Anonymous**
-    
-            <img src="./media/copyfrom_json_to_restapi_5.png" style="width:3.54601in;height:3.93413in" />
+    2.  See [REST Linked Service](REST%20Linked%20Service.md) for information on setting up the REST linked service.
     
 4.  Select **Use this template**.
 
@@ -71,9 +54,6 @@ How to use this solution template
 
     <img src="./media/copyfrom_json_to_restapi_6.png" style="width:4.376in;height:3.16138in" />
 
-    You should also see the following template validation output. We will correct that below.
-
-    <img src="./media/copyfrom_json_to_restapi_7.png" style="width:3.02985in;height:0.64356in" />
 
 Pipeline
 --------
@@ -109,12 +89,6 @@ Copy Activity
     <img src="./media/copyfrom_json_to_restapi_10.png" style="width:4.568in;height:1.49436in" />
 
 2.  The **Request method** must be set to **PATCH**.
-
-3.  **x-api-key:** The Profisee API key, which is the Client Id for the
-    user account you are using to connect to the Profisee API. The
-    Client Id can be found in the FastApp Studio Accounts screen,
-    within the Accounts and Teams admin area. This is entered in the
-    Source tab.
 
     <img src="./media/copyfrom_json_to_restapi_11.png" style="width:2.96792in;height:1.90184in" />
 
