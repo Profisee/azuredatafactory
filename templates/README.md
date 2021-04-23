@@ -12,7 +12,7 @@ GitHub repository
     [<u>https://github.com/Profisee/azuredatafactory</u>](https://github.com/Profisee/azuredatafactory)
     repository to your computer.
 
-4.	Copy the **templates** folder to your local ADF repository.  Then delete the **README.md** file in your cloned repository.  These are not needed.
+4.	Copy the **templates** folder to your cloned ADF repository (from step 2).  Then delete the **README.md** file in your cloned repository.  These are not needed.
 
 5.  Commit and push the templates files to your ADF GitHub repository.
 
