@@ -4,7 +4,7 @@ This page describes how to clone the Profisee ADF templates to your ADF
 GitHub repository
 
 1.  Set up source control for your ADF - [<u>Source Control in ADF</u>](https://docs.microsoft.com/en-us/azure/data-factory/source-control)
-	1.	With ADF and Git integration, make sure the branches and folders are in lowercase.
+	1.	With ADF and Git integration, make sure the branch and folder names are in lowercase.
 	
 2.  Clone your ADF repository to your computer. - [<u>Cloning a repository</u>](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 
