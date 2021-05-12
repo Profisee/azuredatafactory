@@ -23,7 +23,14 @@ Steps
       4. Select principal: Click on **None selected**.  Search for the name of your Data Factory.  Click on it then click on **Select**.
       5. Click on **Add**
    7.  Click on **Review + Create**.
-   8.  Go back to your Azure Data Factory browser tab and click on the refresh button to the right of the **Azure key vault name** dropdown. You should now see your new key vault in the list.
+   8. Navigate to your key vault after it has finished creating.  Click on the **Go to Resource** button. 
+      1. Click on **Secrets** in the left nav panel.
+      2. Click on **Generate/Import**.
+      3. Leave **Upload options** set to **Manual**.
+      4. Give your secret a name (e.g. profisee-rest-gateway-api-key).
+      5. Enter the API Key value in the Value field.
+      6. Click **Create**.
+   9. Go back to your Azure Data Factory browser tab and click on the refresh button to the right of the **Azure key vault name** dropdown. You should now see your new key vault in the list.
 3. Select an existing Key Vault
    1. Select the Key Vault name from the dropdown list.
    2. Click on the **Grant Data Factory service managed identity access to your Azure Key Vault.** link.
@@ -34,19 +41,12 @@ Steps
 	  7. Click on **Add**
 	  8. Click on **Save** on the Access policies screen.
 4. Enter the Secret name you are going to use (e.g. profisee-rest-gateway-api-key).
-5. Navigate to your key vault to add the API Key as a secret. 
-   1. Click on **Secrets** in the left nav panel.
-   2. Click on **Generate/Import**.
-   3. Leave **Upload options** set to **Manual**.
-   4. Give your secret a name (e.g. profisee-rest-gateway-api-key).
-   5. Enter the API Key value in the Value field.
-   6. Click **Create**.
 6. You may need to refresh your Data Factory in the browser to pick up the new Key Vault settings.
 
 More Information
 ----------------
 
--	[Store credential in Azure Key Vault](https://docs.microsoft.com/en-us/azure/data-factory/store-credentials-in-key-vault)
+-   [Store credential in Azure Key Vault](https://docs.microsoft.com/en-us/azure/data-factory/store-credentials-in-key-vault)
 
 -   [Managed identity for Data factory](https://docs.microsoft.com/en-us/azure/data-factory/data-factory-service-identity) 
 
