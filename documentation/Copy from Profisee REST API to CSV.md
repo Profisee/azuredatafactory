@@ -134,6 +134,7 @@ Copy Activity
 
     <img src="./media/copyfrom_restapi_to_csv_11.png" style="width:4.98747in;height:1.76in" />
 
+2. Copy behavior - Set to **Preserve hierarchy**.
 ### Mapping
 
 Select **Mapping** tab to map the records result properties to the corresponding CSV column.
