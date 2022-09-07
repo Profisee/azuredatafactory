@@ -160,7 +160,7 @@ do not want to copy them to the file.
 <img src="./media/copyfrom_restapi_to_csv_15.png" style="width:5.29221in;height:1.43161in" />
 
 After selecting the data collection reference, you need to select the
-Type for each field you want to copy.  You will need to rename all source fields formatted like "$['data'][0]['<field>']", renaming to just <field>.  For example, rename $['data'][0]['code'] to code
+Type for each field you want to copy.  You will also need to rename all source fields formatted like **"$['data'][0]['field']"**, renaming to just **field**, to ensure the pipeline copies all records and not just the first one.  For example, rename **$['data'][0]['code']** to **code**
 
 <img src="./media/copyfrom_restapi_to_csv_16.png" style="width:6.5in;height:1.51042in" />
 
